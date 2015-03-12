@@ -9,17 +9,36 @@ function Box (x, y, r, width, color, shadow_length) {
 }
 
 // Get points
-Box.prototype.get_points = function() {
-	// To do
+Box.prototype.getPoints = function() {
+	var full = (Math.PI * 2) / 4;
+
+	return {
+		p1: {
+			x: this.x + this.half_size * Math.sin(this.r),
+			y: this.y + this.half_size * Math.cos(this.r)
+		},
+		p2: {
+			x: this.x + this.half_size * Math.sin(this.r + full),
+			y: this.y + this.half_size * Math.cos(this.r + full)
+		},
+		p3: {
+			x: this.x + this.half_size * Math.sin(this.r + full * 2),
+			y: this.y + this.half_size * Math.cos(this.r + full * 2)
+		},
+		p4: {
+			x: this.x + this.half_size * Math.sin(this.r + full * 3),
+			y: this.y + this.half_size * Math.cos(this.r + full * 3)
+		}
+	}
 };
 
 // Draw box
-Box.prototype.draw_box = function() {
+Box.prototype.drawBox = function() {
 	// To do
 };
 
 // Draw shadow
-Box.prototype.draw_shadow = function() {
+Box.prototype.drawShadow = function() {
 	// To do
 };
 
