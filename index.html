@@ -1,9 +1,26 @@
 <html>
 <head>
 	<title></title>
+	<style type="text/css">
+		#canvas{
+			width: 800px;
+			height: 600px;
+			background-color: #353f4c;
+		}
+	</style>
 </head>
 <body>
 	<canvas id="canvas"></canvas>
 	<script type="text/javascript" src="shadow-casting.js"></script>
+	<script type="text/javascript">
+		var c = document.getElementById("canvas");
+		c.width = 800;
+		c.height = 600;
+		var ctx = c.getContext("2d");
+
+		var my_box = new Box(400, 200, 0, 200, "#f5c156", 600);
+		my_box.drawShadow()
+		my_box.drawBox()
+	</script>
 </body>
 </html>

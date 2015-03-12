@@ -34,7 +34,7 @@ Box.prototype.getPoints = function() {
 
 // Draw box
 Box.prototype.drawBox = function() {
-	var dots = this.getDots();
+	var dots = this.getPoints();
 	ctx.beginPath();
 	ctx.moveTo(dots.p1.x, dots.p1.y);
 	ctx.lineTo(dots.p2.x, dots.p2.y);
@@ -46,7 +46,33 @@ Box.prototype.drawBox = function() {
 
 // Draw shadow
 Box.prototype.drawShadow = function() {
-	// To do
+	var dots = this.getPoints();
+	var angles = [];
+	var points = [];
+
+	for (dot in dots) {
+		var angle = Math.atan2(0 - dots[dot].y, 0 - dots[dot].x);
+		var endX = dots[dot].x + this.shadow_length * Math.sin(-angle - Math.PI / 2);
+		var endY = dots[dot].y + this.shadow_length * Math.cos(-angle - Math.PI / 2);
+		angles.push(angle);
+		points.push({
+			endX: endX,
+			endY: endY,
+			startX: dots[dot].x,
+			startY: dots[dot].y
+		});
+	};
+
+	for (var i = points.length - 1; i >= 0; i--) {
+		var n = i == 3 ? 0 : i + 1;
+		ctx.beginPath();
+		ctx.moveTo(points[i].startX, points[i].startY);
+		ctx.lineTo(points[n].startX, points[n].startY);
+		ctx.lineTo(points[n].endX, points[n].endY);
+		ctx.lineTo(points[i].endX, points[i].endY);
+		ctx.fillStyle = "#2c343f";
+		ctx.fill();
+	};
 };
 
 // Rotate
