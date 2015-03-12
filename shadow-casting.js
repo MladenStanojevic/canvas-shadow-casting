@@ -34,7 +34,14 @@ Box.prototype.getPoints = function() {
 
 // Draw box
 Box.prototype.drawBox = function() {
-	// To do
+	var dots = this.getDots();
+	ctx.beginPath();
+	ctx.moveTo(dots.p1.x, dots.p1.y);
+	ctx.lineTo(dots.p2.x, dots.p2.y);
+	ctx.lineTo(dots.p3.x, dots.p3.y);
+	ctx.lineTo(dots.p4.x, dots.p4.y);
+	ctx.fillStyle = this.color;
+	ctx.fill();
 };
 
 // Draw shadow
