@@ -1,11 +1,12 @@
 
-function Box (x, y, r, width, color, shadow_length) {
+function Box (x, y, r, width, color, shadow_length, shadow_color) {
 	this.half_size = width/2 || 50;
 	this.x = x || c.width/2;
 	this.y = y || c.height/2;
 	this.r = r;
 	this.shadow_length = shadow_length;
 	this.color = color;
+	this.shadow_color = shadow_color;
 }
 
 // Get points
@@ -70,17 +71,18 @@ Box.prototype.drawShadow = function() {
 		ctx.lineTo(points[n].startX, points[n].startY);
 		ctx.lineTo(points[n].endX, points[n].endY);
 		ctx.lineTo(points[i].endX, points[i].endY);
-		ctx.fillStyle = "#2c343f";
+		ctx.fillStyle = this.shadow_color;
 		ctx.fill();
 	};
 };
 
 // Rotate
-Box.prototype.rotate = function() {
-	// To do
+Box.prototype.rotate = function(ang) {
+	this.r += ang; 
 };
 
 // Move
-Box.prototype.move = function() {
-	// To do
+Box.prototype.move = function(x, y) {
+	this.x += x;
+	this.y += y;
 };

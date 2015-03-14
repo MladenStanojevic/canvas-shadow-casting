@@ -1,0 +1,37 @@
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		#canvas{
+			width: 800px;
+			height: 600px;
+			background-color: #353f4c;
+		}
+	</style>
+</head>
+<body>
+	<h1>Simple Example</h1>
+	<canvas id="canvas"></canvas>
+	<script type="text/javascript" src="../src/shadow-casting.js"></script>
+	<script type="text/javascript">
+		var c = document.getElementById("canvas");
+		c.width = 800;
+		c.height = 600;
+		var ctx = c.getContext("2d");
+
+		var box1 = new Box(300, 300, 1, 100, "#f5c156", 300, "#2c343f");
+
+		var box2 = new Box(400, 100, 1, 50, "#f5c156", 200, "#2c343f");
+
+		setInterval(function() {
+			ctx.clearRect(0, 0, c.width, c.height);
+			box2.rotate(0.005);
+			box2.drawShadow();
+			box2.drawBox();
+	
+			box1.drawShadow();
+			box1.drawBox();
+		},1)
+	</script>
+</body>
+</html>
